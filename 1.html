@@ -8,6 +8,33 @@
 </head>
 
 <body>
+    <h2>数组array</h2>
+    <script type="text/javascript">
+        // 求最大值 
+        var array = [1, 23, 4, 3, 2, 142, 213, 312, 32, 23, 32];
+        // console.log(array);
+        var max = array[0];
+        // console.log(array[0]);
+        for (var i = 0; i < array.length; i++) {
+            if (max < array[i]) {
+                max = array[i];
+            }
+        }
+        console.log(max);
+
+        // 选择排序法
+        var m;
+        for(var x=0; x<array.length;x++){
+            for (var y = 0; y < array.length; y++) {
+                if(array[x]<array[y]){
+                    array[x]=m;
+                    array[x]=array[y];
+                    array[y]=m;
+                }
+            }
+        }
+
+    </script>
 </body>
 
 </html>
