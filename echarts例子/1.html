@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- 绘制一个简单的图表
+在绘图前我们需要为 ECharts 准备一个具备高宽的 DOM 容器。 -->
+
+<body>
+    <h2>饼图</h2>
+    <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+    <div id="main" style="width: 600px;height:600px; background: #a9a;" ></div>
+
+    <!-- 然后就可以通过 echarts.init 方法初始化一个 echarts 实例并通过 setOption 方法生成一个简单的柱状图，下面是完整代码。 -->
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <!-- 引入 ECharts 文件 -->
+    <script src="echarts.min.js"></script>
+    <script src="jquery-1.11.2.min.js"></script>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+        $.ajax({
+            url: "http://mock.shtodream.cn/mock/5f9d021f04f654354c74d0e3/echarts/echarts",
+            type: "post",
+            dataType: "json",
+
+            success: function (data) {
+                var newdata = [];
+                var newcolor = [];
+                $.each(data, function (i, v) {
+                    // console.log(v.data);//数值
+                    // console.log(v.id);//颜色名
+                    // console.log(v.color);//颜色
+                    var nc = v.color;
+                    newcolor.push(nc);
+
+                    var obj = {};
+                    obj.value = v.data;
+                    obj.name = v.id;
+                    newdata.push(obj);
+                })
+                //     var newdata = [
+                //     { value: 235, name: '视频广告' },
+                //     { value: 274, name: '联盟广告' },
+                //     { value: 310, name: '邮件营销' },
+                //     { value: 335, name: '直接访问' },
+                //     { value: 400, name: '搜索引擎' }
+                // ]
+
+                // 指定图表的配置项和数据
+                myChart.setOption({
+                    series: [{
+                        // 全局调色盘。
+                        color: newcolor,
+                        // ['#f00', '#0f0', '#00f', '#000', '#ccc'],
+                        // name: '访问来源',
+                        type: 'pie',    // 设置图表类型为饼图
+                        radius: '55%',  // 饼图的半径，外半径为可视区尺寸（容器高宽中较小一项）的 55% 长度。
+                        data: newdata,         // 数据数组，name 为数据项名称，value 为数据项值
+                    }]
+                })
+
+
+            }
+        })
+
+
+        // 使用刚指定的配置项和数据显示图表。
+        // myChart.setOption(option);
+    </script>
+</body>
+
+</html>

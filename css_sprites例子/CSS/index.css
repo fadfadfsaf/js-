@@ -1,0 +1,47 @@
+ul{
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+}
+ul>li{
+    width: 57px;
+    height: 56px;
+    margin: 20px;
+    float: left;
+}
+ul>li>a{
+    display: inline-block;
+    width: 57px;
+    height: 56px;
+    background: url(../img/img.png) no-repeat;
+}
+ul>li.li>a:link,ul>li.li>a:visited{
+    background-position: -10px -10px;
+}
+ul>li.li1>a:link,ul>li.li1>a:visited{
+    background-position: -10px -86px;
+}
+ul>li.li2>a:link,ul>li.li2>a:visited{
+    background-position: -164px -10px;
+}
+ul>li.li3>a:link,ul>li.li3>a:visited{
+    background-position: -10px -162px;
+}
+ul>li.li4>a:link,ul>li.li4>a:visited{
+    background-position: -164px -162px;
+}
+ul>li.li>a:hover{
+    background-position:  -87px -10px;
+}
+ul>li.li1>a:hover{
+    background-position:  -87px -86px;
+}
+ul>li.li2>a:hover{
+    background-position:  -164px -86px;
+}
+ul>li.li3>a:hover{
+    background-position:  -87px -162px;
+}
+ul>li.li4>a:hover{
+    background-position:  -241px -10px;
+}
