@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>单指拖动</title>
+</head>
+<body>
+    <div id="mydiv" style="position:absolute;left:0px;top:opx;width:100px;height:100px;background:#0f0;"></div>
+</body>
+
+    <script type="text/javascript">
+    	var obj=document.getElementById("mydiv");
+    	obj.addEventListener('touchmove',function(event){
+    		if(event.targetTouches.length==1){
+    			event.preventDefault();
+    			var touch=event.targetTouches[0];
+    			obj.style.left=touch.pageX-50+'px';
+    			obj.style.top=touch.pageY-50+'px';
+    		}
+    	},false);
+    </script>
+
+</html>

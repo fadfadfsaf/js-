@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>横竖屏事件</title>
+</head>
+<body>
+    <div id="mydiv"  style="position:absolute;left:0px;top:0px;width:200px;height:200px;background-color:#ff00ff;"></div>
+</body>
+<script type= "text/javascript" >
+    function orientc(){
+    switch(window.orientation){
+    case 0:
+    alert(0);break;
+    case -90:
+    alert( -90);break;
+    case 90:
+    alert(90);break;
+    case 180:
+    alert(180);break;
+    }
+    }
+    orientc();
+    window.addEventListener("orientationchange",orientc,false);
+    </script>
+</html>>

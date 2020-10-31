@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="mydiv">
+        点击部分
+    </div>
+        <ul id="mymenu" style="position: absolute;visibility:hidden; background: #eee">
+            <li><a href="http://www.baidu.com">番茄炒蛋</a></li>
+            <li><a href="http://www.baidu.com">水煮肉片</a></li>
+            <li><a href="http://www.baidu.com">宫保鸡丁</a></li>
+            <i><a href="http://www.baidu.com">鱼香肉丝</a></li>
+        </ul>
+    
+    <script type="text/javascript">
+    window.onload=function(){
+        document.getElementById("mydiv").oncontextmenu=function(event){
+            event.preventDefault();
+            var menu=document.getElementById("mymenu");
+            menu.style.left=event.clientX+"px";
+            menu.style.top=event.clientY+"px";
+            menu.style.visibility="visible";
+        }
+        document.onclick=function(event){
+            document.getElementById("mymenu").style.visibility="hidden";
+        }
+    }
+    </script>
+
+
+
+<!-- json对象封装事件
+<img src="../img/teacheru.jpg">
+<script type="text/javascript">
+var EventUtil={
+    addHandler:function (element,type,handler){
+        if(element.addEventListener){
+            element.addEventListener(type,handler,false);
+        }
+        else if(element.attachEvent){
+            element.attachEvent("on"+type,handler);
+        }
+        else{
+            element["on"+type]=handler;
+        }
+    }
+};
+var showCount=0;
+EventUtil.addHandler(Window,"load",function(){
+    alert("Load fired");
+});
+EventUtil.addHandler(window,"pageshow",function(event){
+    showCount++;
+    alert("show has been fired"+showCount+"time.presisted?"+event.persisted);
+}) -->
+<!-- </script> -->
+
+</body>
+</html>
