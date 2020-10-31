@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        /*在页面开始添加*/
+        // 防抖：让一个函数在频繁触发，一定时间内只执行一次
+        window.onresize = r;
+
+        function r(resizeNum) {
+            var winW = window.innerWidth;
+            document.getElementsByTagName("html")[0].style.fontSize = winW * 0.15625 + "px";
+            if (winW > window.screen.width && resizeNum <= 10) {
+                setTimeout(function () {
+                    r(++resizeNum);
+                }, 100);
+            } else {
+                document.getElementsByTagName("body")[0].style.opacity = 1;
+            }
+        };
+        setTimeout(r(0), 100);
+    </script>
+</body>
+
+</html>
