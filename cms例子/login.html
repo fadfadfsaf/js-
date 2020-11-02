@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="" name="form1">
+        <input type="text" name="username" value="lyx"><br>
+        <input type="password" name="userpwd" value="12345678"><br>
+        <input type="button" name="btn" value="登录">
+    </form>
+    <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="js/login.js">
+        $(function () {
+            $("input[name=btn]").click(function () {
+                var names = $("input[name=username]").val();
+                var pwd = $("input[name=userpwd]").val();
+                $.ajax({
+                    url: "http://www.qhdlink-student.top/student/login.php",
+                    type: "post",
+                    data: {
+                        "username": names, "userpwd": pwd, "userclass": 61, "type": 2
+                    },
+                    success: function (data) {
+                        console.log(data);
+                        if (data == "ok") {
+                            localStorage.setItem("linkname",names);
+                            location.href = "index.html";
+                        }else{
+                            alert("用户名或密码错误")
+                        }
+                    }
+                })
+            })
+        })
+    </script>
+</body>
+
+</html>

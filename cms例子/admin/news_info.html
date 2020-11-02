@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/public.css">
+</head>
+
+<body>
+    <div class="header">
+        <p id="admin" style="text-align: right; color: #a90000;"></p>
+        <h2>link 朗科</h2>
+        <p style="text-align:right"><button id="btn" name="btn">安全退出</button></p>
+    </div>
+    <div class="left">
+        <ul>
+            <li><a href="../index.html">返回首页</a></li>
+            <li><a href="teacher.html">teacher管理</a></li>
+            <li><a href="banner.html">banner管理</a></li>
+            <li><a href="cp.html">菜品管理</a></li>
+            <li><a href="news.html">新闻管理</a></li>
+        </ul>
+    </div>
+    <div class="right">
+        <h3>新闻信息</h3>
+        <div id="msg">
+            <span>新闻编号</span>
+            <h2>标题 </h2>
+            <i>时间</i>
+            <p>详细内容</p>
+        </div>
+
+    </div>
+    <script type="text/javascript" src="../js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="../js/login1.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var str = location.search;
+            console.log(str);
+            var str1 = str.substr(4, str.length);
+            console.log(str1);
+            $.ajax({
+                url: "http://www.qhdlink-student.top/student/newsinfo.php",
+                type: "post",
+                data: {
+                    "username": "lyx", "userpwd": 12345678, "userclass": 61, "type": 2, "m": str1
+                },
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    var str = "";
+                    $.each(data, function (i, v) {
+                        console.log(v)
+                        str += '<span>'+v.id_news+'</span><h2>'+v.title_news+'</h2><i>'+v.time_news+'</i><p>'+v.info_news+'</p>';
+                    })
+                    $("#msg").append($(str))
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

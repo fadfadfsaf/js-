@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/public.css">
+</head>
+
+<body>
+    <div class="header">
+        <p id="admin" style="text-align: right; color: #a90000;"></p>
+        <h2>link 朗科</h2>
+        <p style="text-align:right"><button id="btn" name="btn">安全退出</button></p>
+    </div>
+    <div class="left">
+        <ul>
+            <li><a href="../index.html">返回首页</a></li>
+            <li><a href="teacher.html">teacher管理</a></li>
+            <li><a href="banner.html">banner管理</a></li>
+            <li><a href="cp.html">菜品管理</a></li>
+            <li><a href="admin/news.html">新闻管理</a></li>
+        </ul>
+    </div>
+    <div class="right">
+        欢迎来到teacher管理
+        <div id="msg"></div>
+    </div>
+    <script type="text/javascript" src="../js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="../js/login1.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $.ajax({
+                url: "http://www.qhdlink-student.top/student/coach.php",
+                type: "post",
+                data: "username=lyx&userpwd=12345678&userclass=61&type=2",
+                dataType: "json",
+                success: function (data) {
+                    // console.log(data);
+                    var str = "";
+                    var obj = eval(data);
+                    $.each(obj, function (i, v) {
+                        console.log(obj)
+                        var star = "";
+                        for (var i = 0; i < v.evaluate_coach; i++) {
+                            star += "*";
+                        }
+                        str += '<div><img src="http://www.qhdlink-student.top/' + v.path_coach + '"><div><p><span>编号:' + v.id_coach + '</span></p><p><span>名称:' + v.name_coach + '</span></p><p><span>入行时间:' + v.dage_coach + '</span></p><p><span>加入朗科时间:' + v.tage_coach + '</span></p><p><span>目前职位:' + v.honor_coach + '</span></p><p><span>以前职位:' + v.type_coach + '</span></p><p><span>评价星级:' + star + '</span></p></div></div>';
+                    })
+                    $("#msg").append($(str))
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>
