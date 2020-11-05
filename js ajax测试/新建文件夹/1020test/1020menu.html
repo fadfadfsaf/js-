@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./jquery-1.11.3.min.js"></script>
+    <title>Document</title>
+    <style>
+        table {
+            border-spacing: 0;
+        }
+
+        tr>td>img {
+            width: 100px;
+            height: 100px;
+        }
+
+        td {
+            border: solid 1px #333333;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>菜单</h3>
+    <table id="menu">
+        <thead>
+
+            <tr>
+                <th>菜品编号</th>
+                <th>菜品名称</th>
+                <th>生产时间</th>
+                <th>失效时间</th>
+                <th>折扣</th>
+                <th>价格</th>
+                <th>评价</th>
+                <th>菜品照片</th>
+                <th>数量</th>
+                <th>点菜</th>
+            </tr>
+        </thead>
+
+        <tbody id="menubody">
+
+        </tbody>
+
+        <tfoot>
+            <tr><td id="price"></td></tr>
+        </tfoot>
+    </table>
+
+
+
+    <script>
+        function getZhe(zhe) {
+            var CZ = ["5折", "6折", "7折", "8折"];
+            var CCZ = ["0.5", "0.6", "0.7", "0.8"];
+            var NZ = [, 0.5, 0.6, 0.7, 0.8];
+            //中文折扣的索引  ||  数字折扣的索引
+            var zz = NZ[CZ.indexOf(zhe) + 1 || CCZ.indexOf(zhe) + 1];
+            return zz;
+        }
+
+        function getPrice() {
+            var price = 0;
+            var obj = $("tbody>tr.food");
+            $.each(obj,function(i,v){
+                var z=$(this).children("td:nth-child(5)").text();
+                var p=$(this).children("td:nth-child(6)").text();
+                var n=$(this).children("td:nth-child(9)").text();
+                var zhe=getZhe(z);
+                var zz=Number(zhe);
+                var pp=Number(p);
+                var nn=Number(n);
+                var ppp=zz*pp*nn;
+                price=ppp+price;
+            })
+            price=Number(price).toFixed(2);
+            console.log(price);
+            $("#price").text(price);
+        }
+
+        $(function () {
+
+            //Ajax实现
+            $.ajax({
+                url: "http://www.qhdlink-student.top/student/coacha.php",
+                data: {
+                    username: "xz",
+                    userpwd: "12345678",
+                    userclass: "61",
+                    type: "2"
+                },
+                dataType: "json",
+                type: "post",
+                success: function (obj) {
+
+                    var str = "";
+                    $.each(obj, function (i, v) {
+                        var star = "";
+                        for (var j = 0; j < v.evaluate_coach; j++) {
+                            star += "⭐";
+                        }
+
+                        str += "<tr class=\"food\"><td>" + v.id_coach + "</td><td>"
+                            + v.name_coach + "</td><td>"
+                            + v.dage_coach + "</td><td>"
+                            + v.tage_coach + "</td><td>"
+                            + v.honor_coach + "</td><td>"
+                            + v.type_coach + "</td><td>"
+                            + star + "</td><td><img src=\"http://www.qhdlink-student.top/" + v.path_coach + "\"></td>"
+                            + "<td class=\"num\">0</td><td><button class=\"add\">+</button><button class=\"reduce\">-</button></td>" + "<tr>";
+                    })
+                    $("#menubody").html($(str));
+
+
+                    //点击事件
+                    $("button.add").click(function () {
+                        var num = Number($(this).parents("tr").children("td:nth-child(9)").text()) + 1;
+                        if(num>99){
+                            alert("别点了，吃这么多，不怕撑着吗？");
+                            return;
+                        }
+                        $(this).parents("tr").children("td:nth-child(9)").text(num);
+                        getPrice();
+                    });
+
+                    $("button.reduce").click(function () {
+                        var num = Number($(this).parents("tr").children("td:nth-child(9)").text()) - 1;
+                        if(num<0){
+                            return;
+                        }
+                        $(this).parents("tr").children("td:nth-child(9)").text(num);
+                        getPrice();
+                    });
+                }
+
+            })
+        })
+
+    </script>
+</body>
+
+</html>

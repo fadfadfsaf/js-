@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    table,
+    td,
+    th {
+        border: 1px solid #f00;
+        border-collapse: collapse;
+        text-align: center;
+    }
+
+    td {
+        padding: 20px;
+    }
+    img{
+        width: 200px;
+    }
+</style>
+
+<body>
+    <table id="msg">
+        <tr>
+            <td>菜品编号</td>
+            <td>菜品名称</td>
+            <td>生产时间</td>
+            <td>失效时间</td>
+            <td>折扣</td>
+            <td>价格</td>
+            <td>评价</td>
+            <td><img src="http://www.qhdlink-student.top/" alt="">img</td>
+        </tr>
+    </table>
+    <script type="text/javascript" src="jquery-1.8.3.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $.ajax({
+                url: "http://www.qhdlink-student.top/student/coacha.php",
+                type: "post",
+                // data:"",
+                dataType: "json",
+                data: {
+                    "username": "lyx", "userpwd": 12345678, "userclass": 61, "type": 2,
+                },
+                success: function (data) {
+                    // console.log(data);
+                    var str = '';
+                    $.each(data, function (i, v) {
+                        console.log(v.id_coach);
+                        str += "<tr><td>" + v.id_coach + "</td><td>" + v.name_coach + "</td><td>" + v.dage_coach +
+                            "</td><td>" + v.tage_coach + "</td><td>" + v.honor_coach + "</td><td>" + v.type_coach +
+                            "</td><td>" + v.evaluate_coach + "</td><td><img src=\"http://www.qhdlink-student.top/" + v.path_coach + "\"></td></tr>";
+                    })
+                    $("#msg").append($(str));
+                }
+            })
+        })
+
+    </script>
+</body>
+
+</html>

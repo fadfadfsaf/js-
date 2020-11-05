@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/public.css">
+</head>
+
+<body>
+    <div id="msg"></div>
+    <script type="text/javascript" src="jquery-1.8.3.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var str = location.search;
+            console.log(str);
+            var str1 = str.substr(4, str.length);
+            console.log(str1);
+            $.ajax({
+                url: "http://www.qhdlink-student.top/student/newsinfo.php",
+                type: "post",
+                data: {
+                    "username": "lyx", "userpwd": 12345678, "userclass": 61, "type": 2, "m": str1
+                },
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    var str = "";
+                    $.each(data, function (i, v) {
+                        console.log(v)
+                        str += '<span>'+v.id_news+'</span><h2>'+v.title_news+'</h2><i>'+v.time_news+'</i><p>'+v.info_news+'</p>';
+                    })
+                    $("#msg").append($(str))
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

@@ -10,7 +10,8 @@
          if ("WebSocket" in window) { //window.WebSocket两者是一样的
             alert("您的浏览器支持 WebSocket!");
             // 打开一个 web socket
-            var ws = new WebSocket(url);   //创建一个websocket对象
+            // var ws = new WebSocket(url);   //创建一个websocket对象
+            var ws = new WebSocket("ws//:127.0.0.1:18088"); 
             ws.onopen = function () {   //连接
                // Web Socket 已连接上，使用 send() 方法发送数据
                ws.send("发送数据");   //触发得是数据发送方法

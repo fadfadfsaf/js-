@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    table,
+    td,
+    th {
+        border: 1px solid #f00;
+        border-collapse: collapse;
+        text-align: center;
+    }
+    td {
+        padding: 20px;
+    }
+</style>
+
+<body>
+    <table id="msg">
+        <tr>
+            <td>所在城市</td>
+            <td>email</td>
+            <td>address</td>
+            <td>失效时间</td>
+        </tr>
+    </table>
+    <script type="text/javascript" src="jquery-1.8.3.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $.ajax({
+                url: "http://mock.shtodream.cn/mock/5e78a45cb9b0d45a938f5d39/address",
+                type: "post",
+                data: "username=lyx&userpwd=12345678&userclass=61&type=2",
+                dataType: "json",
+                success: function (obj) {
+                    // console.log(obj.data.projects);
+                    var obj1 = obj.data.projects;
+                    console.log(obj1);
+                    var str = "";
+                    $.each(obj1, function (i, v) {
+                        console.log(v)
+                        str +='<tr><td>'+v.name+'</td><td>'+v.email+'</td><td>'+v.address+'</td><td>'+v.number+'</td></tr>';
+                    })
+                    $("#msg").append($(str))
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    ul {
+        list-style-type: none;
+        padding: 0px;
+        margin: 0px;
+    }
+
+    #msg>li {
+        float: left;
+        padding: 20px;
+        margin-right: 20px;
+        background: #500;
+    }
+
+    #msg>li:hover {
+        background: #005;
+    }
+
+    #msg .uls {
+        display: none;
+    }
+
+    a {
+        color: aliceblue;
+        text-decoration: none;
+    }
+</style>
+
+<body>
+    <ul id="msg">
+        <li>
+            一级导航测试
+            <ul class="uls">
+                <li><a href="">二级导航测试</a></li>
+            </ul>
+        </li>
+    </ul>
+    <script type="text/javascript" src="jquery-1.8.3.min.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            $.ajax({
+                url: "http://mock.shtodream.cn/mock/5e78a45cb9b0d45a938f5d39/list",
+                type: "get",
+                // data:"",
+                dataType: "json",
+                success: function (obj) {
+                    var object = obj.data;
+                    $.each(object, function (i, v) {
+                        console.log(v);
+                        var str = '';
+                        var str = '<li>';
+                        var secondNav = v.secondNav;
+                        //二级导航
+                        var str1 = '';
+                        var str1 = '<ul class="uls">';
+                        if (secondNav) {
+                            $.each(secondNav, function (i, v) {
+                                str1 += '<li><a href="">' + v.name + '</a></li>';
+                            })
+                        } else {
+                            console.log("s");
+                        }
+                        str1 += "</ul>";
+                        str += '<a href="">' + v.firstNav + str1 + '</a></li>'
+                        $("#msg").append($(str));
+                    })
+                    // $("#msg>li").on("click", function () {
+                    //     $(this).children($(".uls")).toggle()
+                    // })
+                    $("#msg>li").on("mouseenter", function () {
+                        $(this).children("ul").show(200);
+                    });
+                    $("#msg>li").on("mouseleave", function () {
+                        $(this).children("ul").hide(200);
+                    });
+                }
+            })
+        })
+
+    </script>
+</body>
+
+</html>
