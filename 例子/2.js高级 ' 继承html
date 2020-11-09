@@ -9,13 +9,34 @@
 
 <body>
     <script type="text/javascript">
-        // apply()
+        // 对象继承 bind call apply()
         function x(a, b) {
             alert(a + this.color + b)
         }
         var obj = new Object();
         obj.color = "blue";
-        x.apply(obj, ["这个", "很高级"])
+        x.apply(obj, ["这个", "很高级"]);
+
+        function ClassA(sColor) {//color是sColor的属性
+            this.color = sColor;//this指向代表构造函数
+            this.sayColor = function () {//sayColor是sColor的参数
+                alert(this.color);
+            };
+        }
+        function ClassB(bColor, bName) {
+            this.newMethod = ClassA;//创建变量等于ClassA,指向ClassA，并没有运行，引用
+            this.newMethod(bColor);//嵌套了a的活动对象，执行，把bClass的bColor给了color（引用
+            delete this.newMethod;//删除ClassA属性缓存，内容删除，引用存在。删除this在子活动对象的作用域
+            this.name = bName;//classB的对象
+            this.sayName = function () {//classB对象的方法
+                alert(this.name);
+            };
+        }
+        var objA = new ClassA("blue");
+        var objB = new ClassB("red", "John");
+        objA.sayColor()//调用
+        objB.sayColor()
+        objB.sayName()
     </script>
 </body>
 
