@@ -9,14 +9,18 @@
 
 <body>
     <script type="text/javascript">
-        // 对象继承 bind call apply()
-        function x(a, b) {
-            alert(a + this.color + b)
-        }
-        var obj = new Object();
-        obj.color = "blue";
-        x.apply(obj, ["这个", "很高级"]);
+        // // 对象继承 bind call apply()
 
+        // function x(a, b) {
+        //     alert(a + this.color + b)
+        // }
+        // var obj = new Object();
+        // obj.color = "blue";
+        // x.apply(obj, ["这个", "很高级"]);
+
+
+        // 多重继承
+        
         function ClassA(sColor) {//color是sColor的属性
             this.color = sColor;//this指向代表构造函数
             this.sayColor = function () {//sayColor是sColor的参数
