@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript" src="jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" >
+   $(function () {
+            $.ajax({
+                url: "http://mock.shtodream.cn/mock/5e78a45cb9b0d45a938f5d39/list",
+                type: "get",
+                // data:"",
+                dataType: "json",
+                success: function (obj) {
+                   console.log(obj);
+                   
+                }
+            })
+        })
+    </script>
+</body>
+</html>
