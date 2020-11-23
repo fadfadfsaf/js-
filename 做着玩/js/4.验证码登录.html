@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #ss {
+        display: inline-block;
+        text-align: center;
+        width: 83px;
+        background-color: saddlebrown;
+        color: #fff;
+        border: 0px;
+    }
+
+    input {
+        margin: 20px 5px;
+    }
+</style>
+
+<body>
+    <input type="text" placeholder="请输入手机号">
+    <button onclick="set(this)">获取验证码</button>
+    <br>
+    <input type="text" placeholder="请输入验证码">
+    <!-- <br> -->
+    <span id="ss">验证码</span>
+    <br>
+    <input type="button" value="登录">
+
+
+    <script type="text/javascript">
+        function Random(r) {
+            str = ''
+            for (var i = 0; i < r; i++) {
+
+                var a = Math.random();
+                var b = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+                var c = a * 1000;
+                var d = Math.ceil(c);
+                var e = d % 26;
+                str = str + b[e];
+            }
+            return str;
+        }
+        var r = Random(4);
+        var ss = document.getElementById("ss");
+        var number = 60;
+        function set(val) {
+
+            if (number == 0) {
+                val.removeAttribute("disabled");
+                val.innerHTML = "获取验证码";
+                counts = 60;
+                return false;
+            } else {
+                val.setAttribute("disabled", true);
+                val.innerHTML = "重新发送(" + number + ")";
+                number--;
+            }
+            setTimeout(function () {
+
+                set(val);
+                if (number == 55) {
+                    alert(r)
+                    ss.innerHTML=r;
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+
+</html>
