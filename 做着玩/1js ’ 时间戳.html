@@ -26,6 +26,18 @@
             var h = d.getHours();
             var m = d.getMinutes();
             var s = d.getSeconds();
+            
+            if(m<=10){
+                m=("0"+m);
+            }else{
+                m=m;
+            }
+
+            if(s<=10){
+                s=("0"+s);
+            }else{
+                s=s;
+            }
             document.getElementById("Clock").innerHTML = h + ":" + m + ":" + s;
             i = setTimeout(function () {
                 Time()
