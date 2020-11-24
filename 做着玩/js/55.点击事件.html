@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p> 点击按钮2，触发按钮1 </p>
+    <input type="button" value="按钮1" id="btn1" onclick="test1()">
+
+    <input type="button" value="按钮2" id="btn2" onclick="test2(a())"><br>
+
+    <input type="text">
+       
+    <select name="adsd" id="adsd">adsd</select>
+    <button>激活 input 域的 select 事件</button>
+    <script type="text/javascript" src="jquery-1.8.3.min.js"></script>
+    <script type="text/javascript">
+        function test1() {
+
+            alert("hello");
+        }
+        var a = test1;
+
+        function test2(a) {
+            event.Target(a);
+        }
+
+
+        $(function () {
+            $("input").select(function () {
+                $("input").after("1");
+            });
+            $("button").click(function () {
+                $("input").trigger("select");
+            });
+        });
+
+
+
+    </script>
+</body>
+
+</html>
