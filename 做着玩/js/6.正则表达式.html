@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .r {
+        color: #00a900;
+    }
+
+    .w {
+        color: #a90005;
+    }
+</style>
+
+<body>
+    <form name="form1">
+        <input type="text" name="phone" value="" id="phone"><span class="phone">*</span><br>
+        <input type="text" name="user" value="" id="user"><span class="user">*</span><br>
+        <input type="text" name="check" value="" id="check"><span class="check">*</span><br>
+        <input type="button" value="验证" onclick="checks()">
+    </form>
+    <script type="text/javascript">
+        var p = document.getElementsByClassName("phone")[0];
+        var u = document.getElementsByClassName("user")[0];
+        var c = document.getElementsByClassName("check")[0];
+        window.form1.phone.onkeyup = function () {
+            var reg = /^(13|15|17|18|19)\d{9}$/;
+            if (reg.test(this.value)) {
+                p.setAttribute("class", "phone r");
+                p.innerHTML = " 输入正确";
+            } else {
+                p.setAttribute("class", "phone w");
+                p.innerHTML = " 输入格式错误"
+            }
+        }
+        window.form1.user.onkeyup = function () {
+            var reg = /^[0-9A-Za-z]{3,30}$/;
+            if (reg.test(this.value)) {
+                u.setAttribute("class", "phone r");
+                u.innerHTML = " 输入正确";
+            } else {
+                u.setAttribute("class", "phone w");
+                u.innerHTML = " 不可带有标点或下划线";
+            }
+        }
+        window.form1.check.onkeyup = function () {
+            var reg = /^@\w+(\.com|\.cn)$/;
+            if (reg.test(this.value)) {
+                c.setAttribute("class", "phone r");
+                c.innerHTML = " 输入正确";
+            } else {
+                c.setAttribute("class", "phone w");
+                c.innerHTML = " 输入格式错误"
+            }
+        }
+        function checks() {
+            if (p.getAttribute("class") == "phone r" && c.getAttribute("class") == "phone r" && c.getAttribute("class") == "phone r") {
+                alert("正确");
+            } else {
+                alert("错误");
+            }
+            // if (p.getAttribute("class") !== "phone r"){
+            //     window.form1.phone.focus();//让用户名获得焦点
+            //     return fales;//返回错误
+            // }
+        }
+    </script>
+</body>
+
+</html>

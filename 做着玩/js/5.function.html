@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+function
+<p>arguments属性</p>
+    <script type="text/javascript">
+        function test(a, b) {
+            console.log(test.arguments)
+            console.log(test.arguments.callee);
+            //     ƒ test(a,b) {
+            //     console.log(test.arguments.callee);
+            //     console.log(test.arguments.length);
+            // }
+            console.log(test.arguments.length);//2
+            return a + b;
+        }
+        console.log(test(2, 3));
+    </script>
+</body>
+
+</html>
