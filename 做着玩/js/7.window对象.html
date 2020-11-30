@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #s {
+        width: 400px;
+        height: 220px;
+        overflow: auto;
+    }
+
+    #ss {
+        width: 1600px;
+        height: 220px;
+
+    }
+
+    img {
+        width: 400px;
+        height: 220px;
+
+    }
+</style>
+
+<body>
+    <div id="s">
+        <div id="ss"><img src="../img/1.jpg" alt=""><img src="../img/122.jpg" alt=""><img src="../img/3.jpg" alt=""><img
+                src="../img/399654d0e65f45423089e11c484941f3.jpg" alt=""></div>
+    </div>
+    <button id="left" onclick="test()">left</button>
+    <button id="right">right</button>
+    <script type="text/javascript">
+        function test() {
+            var s = document.getElementById("s");
+            var ss = document.getElementById("ss");
+            console.log(s.scrollLeft);
+            if(s.scrollLeft>400){
+                ss.appendChild(ss.firstChild);
+                s.scrollLeft=0;
+            };
+            s.scrollLeft+=10;
+            i=setTimeout("test()",200);
+        }
+    </script>
+</body>
+
+</html>
