@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #a,
+    #b,
+    #c {
+        width: 160px;
+        height: 20px;
+        padding: 10px 20px;
+    }
+</style>
+
+<body>
+    <div>
+        <input type="text" id="a"><span id="span">+</span>
+        <input type="text" id="b"><span>=</span>
+        <input type="text" id="c" readonly>
+        <button onclick="test()">输出</button>
+        <select name="s" id="s">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="%">%</option>
+            </section>
+    </div>
+    <script type="text/javascript">
+        var a = document.getElementById("a");
+        var b = document.getElementById("b");
+        var c = document.getElementById("c");
+        var s = document.getElementById("s");
+        var span = document.getElementById("span")
+
+        function test() {
+            span.innerHTML = s.value;
+            var x = parseFloat(a.value);
+            var y = parseFloat(b.value);
+            if (span.innerHTML == '+') {
+                c.value = x + y;
+            } else if (span.innerHTML == '-') {
+                c.value = x - y;
+            } else if (span.innerHTML == '*') {
+                c.value = x * y;
+            } else {
+                c.value = x / y;
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>
